@@ -1,0 +1,42 @@
+<div class = "container py-5" >
+  <h1 class="display-4">Nos biens Immobilier</h1>
+  <div class = "row mt-5">
+
+    <div class="col-sm-12 col-md-6 col-lg-4" *ngFor="let property of properties; let i = index">
+      <div class="card h-100" style="width: 18rem;">
+          <div *ngFor="let photo of property.photos; let first = first">
+            <img class="card-img-top" *ngIf="first" [src]="photo" alt="Card image cap">
+          </div>
+        <div class="card-body">
+          <h5 class="card-title">{{property.title}}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">{{property.category}}</h6>
+          <p>
+            <span *ngIf="property.category !== '' "> Type de bien  : {{ property.category }}</span><br>
+            <span *ngIf="property.surface !== '' " > Surface   : {{ property.surface }}m² </span>
+          </p>
+          <p>
+              <span *ngIf="property.rooms !=='' "> Nbs de Chambres  : {{ property.rooms }} </span>
+          </p>
+          <br>
+          <p>
+            <span *ngIf="property.price !=='' "> Prix             : {{ property.price }}€ </span>
+            <span *ngIf="property.sold "><i class="text-danger">Vendu !</i></span>
+            <span *ngIf="!property.sold"><i class="text-success"> A vendre !</i></span>
+          </p>
+
+          <p [ngStyle]="{color: getSoldValue(i)}">
+          <span *ngIf="!property.sold">À vendre !</span>
+          <span *ngIf="property.sold">Vendu !</span>
+        </p>
+          <div class="text-center">
+            <button class="btn btn-primary" type="button" [routerLink]="['/property', i]" >Voir ce bien</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+  </div>
+
+</div>

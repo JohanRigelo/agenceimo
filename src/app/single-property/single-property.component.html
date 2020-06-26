@@ -1,0 +1,53 @@
+<div class="container py-5" *ngIf="property">
+  <h1 class="display-4 mb-0"> Titre :{{property.title}} </h1>
+  <hr class="bg-dark mb-4 mt-2">
+  <div class="row">
+    <div class="col-md-6">
+<!-- affichage quand Une seule photo  -->
+      <div *ngIf="property.photos.length === 1 ">
+        <div *ngFor="let photo of property.photos; let first = first">
+          <img [src]="photo" class="w-100" *ngIf="first">
+        </div>
+      </div>
+<!--  affichage quand plus d'une photos dispo -->
+      <div *ngIf="property.photos.length >1">
+
+        <div id="carouselExampleControls" class="carousel slide bg-dark" data-ride="carousel">
+          <div class="carousel-inner">
+
+            <div class="carousel-item" *ngFor="let photo of property.photos; let first = first" [ngClass]= "{'active' : first}">
+              <img class="d-block w-100" [src]="photo" >
+            </div>
+
+          </div>
+          <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+    </div>
+    <div class="col-md-6">
+      <h3 *ngIf="!property.sold" class="text-success">À vendre pour :</h3>
+      <h3 *ngIf="property.sold" class="text-danger">  Vendu pour :</h3>
+      <h3 class="font-weight-normal">{{property.price}} €</h3>
+
+        <p class="font-weight-light">
+          <span *ngIf="property.category !== '' "> Type de bien  : {{ property.category }}</span><br>
+        </p>
+        <p class="font-weight-light">
+          <span *ngIf="property.surface !== '' " > Surface   : {{ property.surface }} m² </span>
+        </p>
+        <p class="font-weight-light">
+          <span *ngIf="property.rooms !=='' " > Nbs de Chambres  : {{ property.rooms }} </span>
+        </p>
+    </div>
+  </div>
+

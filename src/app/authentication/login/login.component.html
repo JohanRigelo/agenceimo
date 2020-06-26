@@ -1,0 +1,23 @@
+<div class="container"></div>
+<h1 class="display-4 mt-5 mb-0">Connexion</h1>
+<hr class="mt-0 mb-5">
+<div class="row">
+  <div class="col-sm-12 col-md-10 col-lg-8 mx-auto">
+
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmitLoginForm()">
+        <div class="form-group">
+          <label for="email">Adresse email</label>
+          <input type="email" id="email" class="form-control" placeholder="exemple@exemple.com" formControlName="email">
+        </div>
+        <div class="form-group">
+          <label for="password">Mot de passe</label>
+          <input type="password" id="password" class="form-control" placeholder="Minimum 6 caractères" formControlName="password">
+        </div>
+        <div class="form-group">
+          <button class="btn btn-primary" type="submit" [disabled]="loginForm.invalid">Connexion</button>
+        </div>
+
+      </form>
+  </div>
+</div>
+
